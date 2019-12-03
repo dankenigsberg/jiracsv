@@ -206,6 +206,14 @@ func (a *IssueAnalysis) CheckStatus() *CheckResult {
 		}
 	}
 
+        if strings.Index(a.Issue.Fields.Description, "<link or reference to") != -1 || strings.Index(a.Issue.Fields.Description, "<link to meaningful PR") != -1 {
+	        if a.Issue.InStatus(jira.IssueStatusDone) {
+			result.SetStatus(CheckStatusRed).AddMessage("NOTDONEDONE")
+                } else {
+			result.AddMessage("NOTDONEDONE")
+                }
+	}
+
 	if a.CommentStatus > CheckStatusNone {
 		result.SetStatus(a.CommentStatus).AddMessage("STATUSCOMMENT")
 	}
