@@ -62,6 +62,8 @@ func NewClient(url string, username, password *string) (*Client, error) {
 			client.CustomFieldID.StoryPoints = f.ID
 		case "5-Acks Check":
 			client.CustomFieldID.AckFlags = f.ID
+		case "Ready-Ready":
+			client.CustomFieldID.AckFlags = f.ID
 		case "QA Contact":
 			client.CustomFieldID.QAContact = f.ID
 		case "Acceptance Criteria":
@@ -125,6 +127,7 @@ func (c *Client) FindIssues(jql string) (IssueCollection, error) {
 			if val := i.Fields.Unknowns[c.CustomFieldID.AckFlags]; val != nil {
 				for _, p := range val.([]interface{}) {
 					switch p.(map[string]interface{})["value"].(string) {
+					// 5-Acks field names
 					case "devel_ack":
 						issueApprovals.Development = true
 					case "pm_ack":
@@ -134,6 +137,17 @@ func (c *Client) FindIssues(jql string) (IssueCollection, error) {
 					case "ux_ack":
 						issueApprovals.Experience = true
 					case "doc_ack":
+						issueApprovals.Documentation = true
+					// Ready-Ready filed names
+					case "dev-ready":
+						issueApprovals.Development = true
+					case "pm-ready":
+						issueApprovals.Product = true
+					case "qa-ready":
+						issueApprovals.Quality = true
+					case "ux-ready":
+						issueApprovals.Experience = true
+					case "doc-ready":
 						issueApprovals.Documentation = true
 					}
 				}
