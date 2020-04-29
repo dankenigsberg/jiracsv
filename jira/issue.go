@@ -15,6 +15,7 @@ type IssueApprovals struct {
 	Quality       bool
 	Experience    bool
 	Documentation bool
+	Support       bool
 }
 
 // Issue represents a Jira Issue
@@ -127,7 +128,7 @@ func NewIssueCollection(size int) IssueCollection {
 
 // Approved returns true if all approvals are true
 func (a *IssueApprovals) Approved() bool {
-	return a.Development == true && a.Product == true && a.Quality == true && a.Experience == true && a.Documentation == true
+	return a.Development == true && a.Product == true && a.Quality == true && a.Experience == true && a.Documentation == true //&& a.Support == true
 }
 
 // IsActive returns true if the issue is currently worked on
