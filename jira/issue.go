@@ -15,6 +15,7 @@ type IssueApprovals struct {
 	Quality       bool
 	Experience    bool
 	Documentation bool
+	Support       bool
 }
 
 // Issue represents a Jira Issue
