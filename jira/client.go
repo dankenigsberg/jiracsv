@@ -17,6 +17,7 @@ type Client struct {
 		ParentLink  string
 		StoryPoints string
 		AckFlags    string
+		AckFlags2    string
 		QAContact   string
 		QAContact2   string
 		Acceptance  string
@@ -64,7 +65,7 @@ func NewClient(url string, username, password *string) (*Client, error) {
 		case "5-Acks Check":
 			client.CustomFieldID.AckFlags = f.ID
 		case "Ready-Ready":
-			client.CustomFieldID.AckFlags = f.ID
+			client.CustomFieldID.AckFlags2 = f.ID
 		case "QA Contact":
 			client.CustomFieldID.QAContact = f.ID
                 case "QE Assignee":
@@ -130,18 +131,23 @@ func (c *Client) FindIssues(jql string) (IssueCollection, error) {
 			if val := i.Fields.Unknowns[c.CustomFieldID.AckFlags]; val != nil {
 				for _, p := range val.([]interface{}) {
 					switch p.(map[string]interface{})["value"].(string) {
-					// 5-Acks field names
-					case "devel_ack":
+					case "dev-ready":
 						issueApprovals.Development = true
-					case "pm_ack":
+					case "pm-ready":
 						issueApprovals.Product = true
-					case "qa_ack":
+					case "qa-ready":
 						issueApprovals.Quality = true
-					case "ux_ack":
+					case "ux-ready":
 						issueApprovals.Experience = true
-					case "doc_ack":
+					case "doc-ready":
 						issueApprovals.Documentation = true
-					// Ready-Ready filed names
+					}
+				}
+			}
+
+			if val := i.Fields.Unknowns[c.CustomFieldID.AckFlags2]; val != nil {
+				for _, p := range val.([]interface{}) {
+					switch p.(map[string]interface{})["value"].(string) {
 					case "dev-ready":
 						issueApprovals.Development = true
 					case "pm-ready":
