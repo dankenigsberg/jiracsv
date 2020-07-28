@@ -73,22 +73,11 @@ const (
 type IssueStatus string
 
 const (
-	// IssueStatusDone represents the Issue Status Done
 	IssueStatusDone IssueStatus = "Done"
-
-	// IssueStatusObsolete represents the Issue Status Done
 	IssueStatusObsolete IssueStatus = "Obsolete"
-
-	// IssueStatusInProgress represents the Issue Status Done
 	IssueStatusInProgress IssueStatus = "In Progress"
-
-	// IssueStatusFeatureComplete represents the Issue Status Done
 	IssueStatusFeatureComplete IssueStatus = "Feature Complete"
-
-	// IssueStatusCodeReview represents the Issue Status Done
 	IssueStatusCodeReview IssueStatus = "Code Review"
-
-	// IssueStatusQEReview represents the Issue Status Done
 	IssueStatusQEReview IssueStatus = "QE Review"
 )
 
