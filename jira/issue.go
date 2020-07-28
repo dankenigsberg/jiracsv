@@ -56,47 +56,28 @@ var (
 type IssueType string
 
 const (
-	// IssueTypeInitiative represents the Issue Type Initiative
 	IssueTypeInitiative IssueType = "Initiative"
-
-	// IssueTypeEpic represents the Issue Type Epic
-	IssueTypeEpic IssueType = "Epic"
-
-	// IssueTypeStory represents the Issue Type Story
-	IssueTypeStory IssueType = "Story"
-
-	// IssueTypeTask represents the Issue Type Task
-	IssueTypeTask IssueType = "Task"
+	IssueTypeEpic       IssueType = "Epic"
+	IssueTypeStory      IssueType = "Story"
+	IssueTypeTask       IssueType = "Task"
 )
 
 // IssueStatus represent an Issue Status
 type IssueStatus string
 
 const (
-	// IssueStatusDone represents the Issue Status Done
-	IssueStatusDone IssueStatus = "Done"
-
-	// IssueStatusObsolete represents the Issue Status Done
-	IssueStatusObsolete IssueStatus = "Obsolete"
-
-	// IssueStatusInProgress represents the Issue Status Done
-	IssueStatusInProgress IssueStatus = "In Progress"
-
-	// IssueStatusFeatureComplete represents the Issue Status Done
+	IssueStatusDone            IssueStatus = "Done"
+	IssueStatusObsolete        IssueStatus = "Obsolete"
+	IssueStatusInProgress      IssueStatus = "In Progress"
 	IssueStatusFeatureComplete IssueStatus = "Feature Complete"
-
-	// IssueStatusCodeReview represents the Issue Status Done
-	IssueStatusCodeReview IssueStatus = "Code Review"
-
-	// IssueStatusQEReview represents the Issue Status Done
-	IssueStatusQEReview IssueStatus = "QE Review"
+	IssueStatusCodeReview      IssueStatus = "Code Review"
+	IssueStatusQEReview        IssueStatus = "QE Review"
 )
 
 // IssueResolution represent an Issue Resolution
 type IssueResolution string
 
 const (
-	// IssueResolutionDone represents the Issue Resolution Done
 	IssueResolutionDone IssueResolution = "Done"
 )
 
@@ -104,7 +85,6 @@ const (
 type IssuePriority string
 
 const (
-	// IssuePriorityUnprioritized represents the Issue Priority Unprioritized
 	IssuePriorityUnprioritized IssuePriority = "Unprioritized"
 )
 
