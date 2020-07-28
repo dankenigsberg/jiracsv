@@ -60,7 +60,7 @@ func AnalyzeIssue(issue *jira.Issue, component *string) *IssueAnalysis {
 
 	linkedIssuesDone := linkedIssues.FilterByFunction(
 		func(i *jira.Issue) bool {
-			return i.InStatus(jira.IssueStatusDone)
+			return i.IsResolved()
 		},
 	)
 
