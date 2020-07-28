@@ -50,7 +50,7 @@ func (c *ComponentsCollection) AddIssues(issues []*jira.Issue) {
 		}
 
 		for _, j := range i.LinkedIssues {
-			if j.InStatus(jira.IssueStatusObsolete) || j.IsType(jira.IssueTypeEpic) {
+			if j.InStatus(jira.IssueStatusObsolete) || j.InStatus(jira.IssueStatusWontFixObsolete) || j.IsType(jira.IssueTypeEpic) {
 				continue
 			}
 

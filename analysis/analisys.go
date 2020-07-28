@@ -41,7 +41,7 @@ func AnalyzeIssue(issue *jira.Issue, component *string) *IssueAnalysis {
 
 	allLinkedIssues := issue.LinkedIssues.FilterByFunction(
 		func(i *jira.Issue) bool {
-			return !i.InStatus(jira.IssueStatusObsolete) && !i.IsType(jira.IssueTypeEpic)
+			return !i.InStatus(jira.IssueStatusObsolete) && !i.InStatus(jira.IssueStatusWontFixObsolete) && !i.IsType(jira.IssueTypeEpic)
 		},
 	)
 
