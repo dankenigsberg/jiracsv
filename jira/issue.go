@@ -66,8 +66,11 @@ const (
 type IssueStatus string
 
 const (
+	IssueStatusOpen            IssueStatus = "Open"
+	IssueStatusToDo            IssueStatus = "To Do"
 	IssueStatusDone            IssueStatus = "Done"
 	IssueStatusObsolete        IssueStatus = "Obsolete"
+	IssueStatusWontFix         IssueStatus = "Won't Fix / Obsolete"
 	IssueStatusInProgress      IssueStatus = "In Progress"
 	IssueStatusFeatureComplete IssueStatus = "Feature Complete"
 	IssueStatusCodeReview      IssueStatus = "Code Review"
