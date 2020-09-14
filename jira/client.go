@@ -20,6 +20,7 @@ type Client struct {
 		AckFlags2    string
 		QAContact   string
 		QAContact2   string
+		QAContact3   string
 		Acceptance  string
 		Flagged     string
 	}
@@ -67,7 +68,11 @@ func NewClient(url string, username, password *string) (*Client, error) {
 		case "Ready-Ready":
 			client.CustomFieldID.AckFlags2 = f.ID
 		case "QA Contact":
-			client.CustomFieldID.QAContact = f.ID
+			if client.CustomFieldID.QAContact == "" {
+				client.CustomFieldID.QAContact = f.ID
+		} else {
+				client.CustomFieldID.QAContact3 = f.ID
+		}
                 case "QE Assignee":
 			client.CustomFieldID.QAContact2 = f.ID
 		case "Acceptance Criteria":
@@ -175,6 +180,10 @@ func (c *Client) FindIssues(jql string) (IssueCollection, error) {
 			}
 
 			if val := i.Fields.Unknowns[c.CustomFieldID.QAContact2]; val != nil {
+				qaContact = (val.(map[string]interface{})["key"]).(string)
+			}
+
+			if val := i.Fields.Unknowns[c.CustomFieldID.QAContact3]; val != nil {
 				qaContact = (val.(map[string]interface{})["key"]).(string)
 			}
 
