@@ -107,9 +107,11 @@ func AnalyzeIssue(issue *jira.Issue, component *string) *IssueAnalysis {
 	}
 
 	for _, i := range append(linkedIssues, assessment.Issue) {
-		if commentStatus, commentDate := getIssueCommentStatus(i); commentStatus > assessment.CommentStatus {
-			assessment.CommentStatus = commentStatus
-			assessment.CommentDate = commentDate
+		if !i.InStatus(jira.IssueStatusObsolete) && !i.InStatus(jira.IssueStatusWontFixObsolete) {
+			if commentStatus, commentDate := getIssueCommentStatus(i); commentStatus > assessment.CommentStatus {
+				assessment.CommentStatus = commentStatus
+				assessment.CommentDate = commentDate
+			}
 		}
 	}
 
@@ -206,12 +208,12 @@ func (a *IssueAnalysis) CheckStatus() *CheckResult {
 		}
 	}
 
-        if strings.Index(a.Issue.Fields.Description, "<link or reference to") != -1 || strings.Index(a.Issue.Fields.Description, "<link to meaningful PR") != -1 {
-	        if a.Issue.InStatus(jira.IssueStatusDone) {
+	if strings.Index(a.Issue.Fields.Description, "<link or reference to") != -1 || strings.Index(a.Issue.Fields.Description, "<link to meaningful PR") != -1 {
+		if a.Issue.InStatus(jira.IssueStatusDone) {
 			result.SetStatus(CheckStatusRed).AddMessage("NOTDONEDONE")
-                } else {
+		} else {
 			result.AddMessage("NOTDONEDONE")
-                }
+		}
 	}
 
 	if a.CommentStatus > CheckStatusNone {
